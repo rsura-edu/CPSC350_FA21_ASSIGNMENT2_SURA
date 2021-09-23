@@ -1,3 +1,4 @@
+
 #include "TutToEngTranslator.h"
 
 using namespace std;
@@ -32,23 +33,33 @@ string TutToEngTranslator::translateAndUpdate(string& sentence){
     bool isUpper = (sentence[0] == toupper(sentence[0]));
     string tempString = lowercaseString(sentence); // to prevent calling lowercaseString for every "character" of the Tutnese sentence
 
-    if (tempString[0] == 'a' || tempString[0] == 'e' || tempString[0] == 'i' || tempString[0] == 'o' || tempString[0] == 'u') {
+    if (tempString[0] == 'a' || (tempString[0] == 'e' && tempString[1] != 'x') || tempString[0] == 'i' || tempString[0] == 'o' || tempString[0] == 'u') {
         translation += tempString[0];
         sentence = sentence.substr(1,sentence.length());
     } else if (tempString.substr(0,4) == "squa"){
         if (tempString[4] == 't') {
-            if (tempString.substr(4,7) == "tut") {
+            if (tempString.substr(0,7) == "squatut") {
                 translation = "tt";
                 sentence = sentence.substr(7,sentence.length());
-            } else {
+                // cout << translation << "*" << endl;
+            }
+            else {
                 translation += tempString[5];
                 translation += tempString[5];
+                // cout << translation << "!" << endl;
                 sentence = sentence.substr(6,sentence.length());
             }
-        } else {
+        }
+        // else if (tempString.substr(4,6) == "ex"){
+        //     translation = "xx";
+        //     sentence = sentence.substr(7,sentence.length());
+        //     // cout << translation << "?" << endl;
+        // }
+        else {
             sentence = sentence.substr(4,sentence.length());
             translation = translateAndUpdate(sentence);
             translation = translation + translation;
+            // cout << translation << "$" << endl;
         }
     } else if (tempString.substr(0,3) == "bub"){
         translation = "b";
@@ -113,6 +124,9 @@ string TutToEngTranslator::translateAndUpdate(string& sentence){
     } else if (tempString.substr(0,3) == "zub"){
         translation = "z";
         sentence = sentence.substr(3,sentence.length());
+    } else { // if somehow the tutnese file has an issue with spelling
+        translation += sentence[0];
+        sentence = sentence.substr(1,sentence.length());
     }
 
     if (isUpper) {
@@ -123,7 +137,7 @@ string TutToEngTranslator::translateAndUpdate(string& sentence){
 
 string TutToEngTranslator::returnTranslatedSentence(string engSentence){
     string translatedSentence = "";
-    while (engSentence.length() > 1) {
+    while (engSentence.length() > 0){
         translatedSentence += translateAndUpdate(engSentence);
     }
     return translatedSentence;
