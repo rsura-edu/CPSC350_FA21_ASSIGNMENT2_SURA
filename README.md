@@ -26,7 +26,7 @@ README for Assignment 2
     - Zybook and Handwritten notes from C++ Interterm course
 
 5) Instructions:
-To run the assignment:
+- To run the assignment:
     - make all
     - ./assignment2.out INPUT OUTPUT DIRECTION
         - (Where INPUT is the input file's name, OUTPUT is the output file's name, and direction is "E2T" for English to Tutnese translation and "T2E" for Tutnese to English translation)
