@@ -1,16 +1,37 @@
+/**
+ * Implementation File: TutToEngTranslator.cpp
+ *
+ * Full Name: Rahul Sura
+ * Student ID: 2371308
+ * Chapman email: sura@chapman.edu
+ * Course: CPSC 350-03
+ * Assignment: Assignment 2
+ */
 
 #include "TutToEngTranslator.h"
 
 using namespace std;
 
+/**
+ * Default constructor
+ */
 TutToEngTranslator::TutToEngTranslator(){
-
+    // empty body - no code necessary
 }
 
+/**
+ * Destructor
+ */
 TutToEngTranslator::~TutToEngTranslator(){
-
+    // empty body - no code necessary
 }
 
+/**
+ * Makes the entire string lowercase (used for case-insensitive substring checking in this class specifically)
+ *
+ * @param A string of characters representing a word, sentence, or phrase
+ * @return A string of characters all in lowercase
+ */
 string TutToEngTranslator::lowercaseString(string s){
     for (int i = 0; i < s.length(); ++i) {
         s[i] = tolower(s[i]);
@@ -18,6 +39,13 @@ string TutToEngTranslator::lowercaseString(string s){
     return s;
 }
 
+/**
+ * Translates the first tutnese character (or non-translatable tutnese character) of the sentence
+ * and updates the sentence by removing the
+ *
+ * @param A string of characters representing a word, sentence, or phrase
+ * @return A string of characters all in lowercase
+ */
 string TutToEngTranslator::translateAndUpdate(string& sentence){
     string translation = "";
     if (sentence == "") { // in case an empty string is passed
@@ -41,25 +69,17 @@ string TutToEngTranslator::translateAndUpdate(string& sentence){
             if (tempString.substr(0,7) == "squatut") {
                 translation = "tt";
                 sentence = sentence.substr(7,sentence.length());
-                // cout << translation << "*" << endl;
             }
             else {
                 translation += tempString[5];
                 translation += tempString[5];
-                // cout << translation << "!" << endl;
                 sentence = sentence.substr(6,sentence.length());
             }
         }
-        // else if (tempString.substr(4,6) == "ex"){
-        //     translation = "xx";
-        //     sentence = sentence.substr(7,sentence.length());
-        //     // cout << translation << "?" << endl;
-        // }
         else {
             sentence = sentence.substr(4,sentence.length());
             translation = translateAndUpdate(sentence);
             translation = translation + translation;
-            // cout << translation << "$" << endl;
         }
     } else if (tempString.substr(0,3) == "bub"){
         translation = "b";
@@ -135,10 +155,10 @@ string TutToEngTranslator::translateAndUpdate(string& sentence){
     return translation;
 }
 
-string TutToEngTranslator::returnTranslatedSentence(string engSentence){
+string TutToEngTranslator::returnTranslatedSentence(string tutSentence){
     string translatedSentence = "";
-    while (engSentence.length() > 0){
-        translatedSentence += translateAndUpdate(engSentence);
+    while (tutSentence.length() > 0){
+        translatedSentence += translateAndUpdate(tutSentence);
     }
     return translatedSentence;
 }

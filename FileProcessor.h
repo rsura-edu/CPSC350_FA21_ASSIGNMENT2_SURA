@@ -5,7 +5,7 @@
  * Student ID: 2371308
  * Chapman email: sura@chapman.edu
  * Course: CPSC 350-03
- * Assignment: Assignment 1
+ * Assignment: Assignment 2 (but an untouched copy from Assignment 1)
  */
 
 #ifndef FILEPROCESSOR_H

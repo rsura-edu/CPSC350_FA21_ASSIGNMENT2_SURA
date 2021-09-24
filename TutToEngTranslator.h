@@ -1,4 +1,14 @@
-#ifndef TUTTOENGTRANSLATOR_H
+/**
+ * Header File: TutToEngTranslator.h
+ *
+ * Full Name: Rahul Sura
+ * Student ID: 2371308
+ * Chapman email: sura@chapman.edu
+ * Course: CPSC 350-03
+ * Assignment: Assignment 2
+ */
+
+#ifndef TUTTOENGTRANSLATOR_H // header guards
 #define TUTTOENGTRANSLATOR_H
 
 #include <iostream>
@@ -11,7 +21,7 @@ class TutToEngTranslator{
         ~TutToEngTranslator();
         string returnTranslatedSentence(string engSentence);
     private:
-        string lowercaseString(string s);
+        string lowercaseString(string s); //makes the whole sentence lower case just for substring checking
         string translateAndUpdate(string& sentence); // translates substring and updates the sentence
 
 

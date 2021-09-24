@@ -1,16 +1,31 @@
+/**
+ * Implementation File: TutToEngFileProcessor.cpp
+ *
+ * Full Name: Rahul Sura
+ * Student ID: 2371308
+ * Chapman email: sura@chapman.edu
+ * Course: CPSC 350-03
+ * Assignment: Assignment 2
+ */
+
 #include <fstream>
 #include "TutToEngFileProcessor.h"
 #include "TutToEngTranslator.h"
 
-
 using namespace std;
 
+/**
+ * Default constructor
+ */
 TutToEngFileProcessor::TutToEngFileProcessor(){
-
+    // empty body - no code necessary
 }
 
+/**
+ * Destructor
+ */
 TutToEngFileProcessor::~TutToEngFileProcessor(){
-
+    // empty body - no code necessary
 }
 
 /**
