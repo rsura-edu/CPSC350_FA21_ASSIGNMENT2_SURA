@@ -33,7 +33,7 @@ TutToEngTranslator::~TutToEngTranslator(){
  * @return A string of characters all in lowercase
  */
 string TutToEngTranslator::lowercaseString(string s){
-    for (int i = 0; i < s.length(); ++i) {
+    for (int i = 0; i < s.length(); ++i) { // iterates through a string and makes all letters lowercase
         s[i] = tolower(s[i]);
     }
     return s;
@@ -58,29 +58,31 @@ string TutToEngTranslator::translateAndUpdate(string& sentence){
         return translation;
     }
 
-    bool isUpper = (sentence[0] == toupper(sentence[0]));
-    string tempString = lowercaseString(sentence); // to prevent calling lowercaseString for every "character" of the Tutnese sentence
+    bool isUpper = (sentence[0] == toupper(sentence[0])); // if the tutnese "character" is upper case
+    string tempString = lowercaseString(sentence); // to prevent calling lowercaseString to keep checking for a character of the Tutnese sentence
 
+    // if it's a vowel (checks if e isn't followed by x as well, since "ex" translates to x)
     if (tempString[0] == 'a' || (tempString[0] == 'e' && tempString[1] != 'x') || tempString[0] == 'i' || tempString[0] == 'o' || tempString[0] == 'u') {
         translation += tempString[0];
         sentence = sentence.substr(1,sentence.length());
-    } else if (tempString.substr(0,4) == "squa"){
-        if (tempString[4] == 't') {
-            if (tempString.substr(0,7) == "squatut") {
+    } else if (tempString.substr(0,4) == "squa"){ // double letter cases
+        if (tempString[4] == 't') { // double vowel or double 't'
+            if (tempString.substr(0,7) == "squatut") { // double t
                 translation = "tt";
                 sentence = sentence.substr(7,sentence.length());
             }
-            else {
+            else { // double vowel
                 translation += tempString[5];
                 translation += tempString[5];
                 sentence = sentence.substr(6,sentence.length());
             }
         }
-        else {
+        else { // double consonant
             sentence = sentence.substr(4,sentence.length());
-            translation = translateAndUpdate(sentence);
+            translation = translateAndUpdate(sentence); // removed squa and recursive call to find double of the next Tutnese "character"
             translation = translation + translation;
         }
+    // all the rest of these else-ifs are just checking for the normal cases
     } else if (tempString.substr(0,3) == "bub"){
         translation = "b";
         sentence = sentence.substr(3,sentence.length());
@@ -144,12 +146,12 @@ string TutToEngTranslator::translateAndUpdate(string& sentence){
     } else if (tempString.substr(0,3) == "zub"){
         translation = "z";
         sentence = sentence.substr(3,sentence.length());
-    } else { // if somehow the tutnese file has an issue with spelling
+    } else { // if somehow the tutnese file has an issue with spelling, it just returns the first character and updates the sentence
         translation += sentence[0];
         sentence = sentence.substr(1,sentence.length());
     }
 
-    if (isUpper) {
+    if (isUpper) { // if it was upper case, it makes the translation upper case as well
         translation[0] = toupper(translation[0]);
     }
     return translation;
@@ -163,6 +165,9 @@ string TutToEngTranslator::translateAndUpdate(string& sentence){
  */
 string TutToEngTranslator::returnTranslatedSentence(string tutSentence){
     string translatedSentence = "";
+
+    // This while loop keeps removing Tutnese "characters" from the sentence, translates them, and appends the translation
+    // to the newly formed english sentence
     while (tutSentence.length() > 0){
         translatedSentence += translateAndUpdate(tutSentence);
     }

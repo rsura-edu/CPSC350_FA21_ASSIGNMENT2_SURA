@@ -20,8 +20,6 @@ class TutToEngFileProcessor{
         TutToEngFileProcessor();
         ~TutToEngFileProcessor();
         void processFile(string inputFile, string outputFile);
-    private:
-        string trimString(string phrase); // trims a string's leading and trailing spaces
 };
 
 #endif

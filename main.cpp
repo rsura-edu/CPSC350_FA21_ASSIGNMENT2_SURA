@@ -27,7 +27,6 @@ int main(int argc, char** argv) {
 
     cout << "------------------------------" << endl; // Just highlighting program's output in terminal window
 
-
     if(argc >= 4){
         // Not sure why, but I couldn't use argv[3] for boolean comparison, so I put it in this temp variable and it works using that
         string translationDirection = argv[3];
@@ -35,20 +34,20 @@ int main(int argc, char** argv) {
         for (int i = 0; i < translationDirection.length(); ++i) { // makes the translation direction case-insensitive
             translationDirection[i] = tolower(translationDirection[i]);
         }
-        if (translationDirection == "t2e") {
+        if (translationDirection == "t2e") { // Tutnese to English translation
             TutToEngFileProcessor *tep = new TutToEngFileProcessor();
             tep->processFile(argv[1],argv[2]);
             delete tep;
-        } else if (translationDirection == "e2t") {
+        } else if (translationDirection == "e2t") { // English to Tutnese translation
             FileProcessor *fp = new FileProcessor();
             fp->processFile(argv[1], argv[2]);
             delete fp;
-        } else {
+        } else { // If the direction of translation is mistyped
             cout << "Oops! Did you put the direction of translation properly?" << endl;
             cout << "If you want English to Tutnese translation, make your third command line argument as \"E2T\"" << endl;
             cout << "If you want Tutnese to English translation instead, make your third command line argument as \"T2E\"" << endl;
         }
-    } else {
+    } else { // If there weren't enough parameters typed
         cout << "It appears that you haven't provided the necessary command line parameters when running this program. Please re-run " <<
         "the program with command line parameters about the input file's name, output file's name, and translation direction (in that order)" << endl;
     }
