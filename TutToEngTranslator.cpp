@@ -41,10 +41,10 @@ string TutToEngTranslator::lowercaseString(string s){
 
 /**
  * Translates the first tutnese character (or non-translatable tutnese character) of the sentence
- * and updates the sentence by removing the
+ * and updates the sentence by removing the tutnese "character" and returns the translated English character
  *
  * @param A string of characters representing a word, sentence, or phrase
- * @return A string of characters all in lowercase
+ * @return A string of the english translation of the first tutnese character
  */
 string TutToEngTranslator::translateAndUpdate(string& sentence){
     string translation = "";
@@ -155,6 +155,12 @@ string TutToEngTranslator::translateAndUpdate(string& sentence){
     return translation;
 }
 
+/**
+ * Translates a string representing a Tutnese sentence to English.
+ *
+ * @param A string of characters representing a Tutnese word, sentence, or phrase
+ * @return A string of characters representing the English translation of the Tutnese sentence
+ */
 string TutToEngTranslator::returnTranslatedSentence(string tutSentence){
     string translatedSentence = "";
     while (tutSentence.length() > 0){

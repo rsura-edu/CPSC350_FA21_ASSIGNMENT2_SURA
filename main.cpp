@@ -5,7 +5,7 @@
  * Student ID: 2371308
  * Chapman email: sura@chapman.edu
  * Course: CPSC 350-03
- * Assignment: Assignment 1
+ * Assignment: Assignment 2
  */
 
 #include "FileProcessor.h"
@@ -14,7 +14,11 @@
 using namespace std;
 
 /**
- *
+ * This main method takes in three command line parameters, the first being the name
+ * of the input file (including the extension) containing text to be translated,
+ * the second being the name of the output file (also including the extension), and
+ * the third, which is the direction of translation. "E2T" represents translating from
+ * English to Tutnese and "T2E" represents translating from Tutnese to English.
  *
  * @param Command line parameters, separated by a space
  * @return Exit code
@@ -23,7 +27,7 @@ int main(int argc, char** argv) {
 
     cout << "------------------------------" << endl; // Just highlighting program's output in terminal window
 
-    // not sure why, but I couldn't use argv[3] for boolean comparison, so I put it in this temp variable and it works with that
+    // Not sure why, but I couldn't use argv[3] for boolean comparison, so I put it in this temp variable and it works using that
     string translationDirection = argv[3];
 
     for (int i = 0; i < translationDirection.length(); ++i) { // makes the translation direction case-insensitive

@@ -59,6 +59,13 @@ string TutToEngFileProcessor::trimString(string phrase){
 
 }
 
+/**
+ * Takes the name of an input file name and an output file name to translate the
+ * Tutnese text from the input text file and put the English translation in an output file.
+ *
+ * @param the name of the input file (including the extension)
+ * @param the name of the output file (including the extension)
+ */
 void TutToEngFileProcessor::processFile(string inputFile, string outputFile){
     ifstream fileReader;
     fileReader.open(inputFile); // opens input file with the name (inputFile)
