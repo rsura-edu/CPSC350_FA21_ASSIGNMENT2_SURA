@@ -27,14 +27,14 @@ int main(int argc, char** argv) {
 
     cout << "------------------------------" << endl; // Just highlighting program's output in terminal window
 
-    // Not sure why, but I couldn't use argv[3] for boolean comparison, so I put it in this temp variable and it works using that
-    string translationDirection = argv[3];
-
-    for (int i = 0; i < translationDirection.length(); ++i) { // makes the translation direction case-insensitive
-        translationDirection[i] = tolower(translationDirection[i]);
-    }
 
     if(argc >= 4){
+        // Not sure why, but I couldn't use argv[3] for boolean comparison, so I put it in this temp variable and it works using that
+        string translationDirection = argv[3];
+
+        for (int i = 0; i < translationDirection.length(); ++i) { // makes the translation direction case-insensitive
+            translationDirection[i] = tolower(translationDirection[i]);
+        }
         if (translationDirection == "t2e") {
             TutToEngFileProcessor *tep = new TutToEngFileProcessor();
             tep->processFile(argv[1],argv[2]);
